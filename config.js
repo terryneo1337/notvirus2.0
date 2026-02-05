@@ -21,7 +21,7 @@ const CONFIG = {
     text: "#2a1220"
   },
   email: {
-    enabled: true,
+    enabled: False,
     serviceId: "YOUR_SERVICE_ID",
     templateId: "YOUR_TEMPLATE_ID",
     publicKey: "YOUR_PUBLIC_KEY",
