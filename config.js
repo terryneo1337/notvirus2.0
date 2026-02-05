@@ -6,10 +6,10 @@ const CONFIG = {
   questionSubtitle: "There are cute challenges waiting after this.",
   yesTitle: "Yay!",
   yesMessage: "You just unlocked a few tiny games. Beat them all to reveal your gift.",
-  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "I'll make carbonara?",  "I'll make carbonara?",  "I'll make carbonara?"],
+  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "Noob",  "Press Yes",  "Too slow", "Not Fast Enough"],
   winMessages: {
-    hearts: "You did it! Hearts collected.",
-    match: "Perfect matches! So cute.",
+    hearts: "Why so slow.",
+    match: "Could be faster.",
     meter: "Love level maxed!"
   },
   theme: {
@@ -59,7 +59,7 @@ const CONFIG = {
     title: "You did it!",
     message: "Your gift is waiting for you.",
     image: "assets/gift.jpg",
-    subtext: "You won a romantic restaurant dinner with me! And we gonna eat Wagyu beef ;) Can't wait to celebrate together.",
+    subtext: "You won a dinner date with me on 14th Feb 8.30pm,! And we gonna go Moga at 1 Hill St, Pullman ;) ",
     emojis: "💌✨💖"
   }
 };
