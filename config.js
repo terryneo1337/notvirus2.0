@@ -1,5 +1,5 @@
 const CONFIG = {
-  valentineName: "Jade",
+  valentineName: "Ashley",
   photoPath: "assets/photo.jpg",
   heroMessage: "A tiny adventure wrapped in a lot of love.",
   questionText: "Will you be my Valentine?",
