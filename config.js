@@ -27,6 +27,14 @@ const CONFIG = {
     publicKey: "YOUR_PUBLIC_KEY",
     toEmail: "you@example.com"
   },
+  music: {
+    enabled: true,
+    autoplay: true,
+    musicUrl: "https://res.cloudinary.com/dncywqfpb/video/upload/v1738399057/music_qrhjvy.mp3",
+    startText: "🎵 Play Music",
+    stopText: "🔇 Stop Music",
+    volume: 0.6
+  },
   games: {
     hearts: {
       goal: 1,

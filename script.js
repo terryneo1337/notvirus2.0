@@ -48,7 +48,9 @@ const elements = {
   photoModal: $("#photo-modal"),
   photoModalImage: $("#photo-modal-image"),
   photoModalCaption: $("#photo-modal-caption"),
-  photoModalClose: $("#photo-modal-close")
+  photoModalClose: $("#photo-modal-close"),
+  musicToggle: $("#music-toggle"),
+  musicPlayer: $("#music-player")
 };
 
 const gamePanels = {
@@ -85,6 +87,58 @@ const applyConfig = () => {
   elements.finalImage.src = CONFIG.final.image || "";
   elements.finalSubtext.textContent = CONFIG.final.subtext || "";
   elements.finalEmojis.textContent = CONFIG.final.emojis;
+};
+
+const initMusic = () => {
+  const music = CONFIG.music;
+  if (!music?.enabled) {
+    elements.musicToggle.classList.add("is-hidden");
+    return;
+  }
+
+  if (!music.musicUrl) {
+    elements.musicToggle.textContent = "Add music URL";
+    elements.musicToggle.disabled = true;
+    return;
+  }
+
+  elements.musicToggle.textContent = music.startText || "Play Music";
+  elements.musicPlayer.src = music.musicUrl;
+  elements.musicPlayer.volume = typeof music.volume === "number" ? music.volume : 0.6;
+
+  const updateButton = () => {
+    const isPlaying = !elements.musicPlayer.paused;
+    elements.musicToggle.textContent = isPlaying
+      ? music.stopText || "Pause Music"
+      : music.startText || "Play Music";
+    elements.musicToggle.classList.toggle("is-playing", isPlaying);
+  };
+
+  const tryPlay = async () => {
+    try {
+      await elements.musicPlayer.play();
+      updateButton();
+    } catch (error) {
+      updateButton();
+    }
+  };
+
+  elements.musicToggle.addEventListener("click", async () => {
+    if (elements.musicPlayer.paused) {
+      await tryPlay();
+    } else {
+      elements.musicPlayer.pause();
+      updateButton();
+    }
+  });
+
+  elements.musicPlayer.addEventListener("ended", () => {
+    updateButton();
+  });
+
+  if (music.autoplay) {
+    tryPlay();
+  }
 };
 
 const showStage = (stageId) => {
@@ -439,4 +493,5 @@ const wireEvents = () => {
 };
 
 applyConfig();
+initMusic();
 wireEvents();

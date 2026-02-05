@@ -24,6 +24,7 @@ Open `config.js` and edit:
 - `noMessages`
 - `games.match.pairs` (your photos + cities)
 - `games.hearts.spawnIntervalMs` and `games.hearts.heartLifespanMs`
+- `music` (enable, URL, button text, autoplay). Use a hosted URL (e.g., Cloudinary).
 - `final.title`, `final.message`, `final.subtext`, `final.emojis`
 
 You do **not** need to change `index.html` or `script.js`.
