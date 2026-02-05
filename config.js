@@ -37,9 +37,9 @@ const CONFIG = {
   },
   games: {
     hearts: {
-      goal: 1,
+      goal: 10,
       spawnIntervalMs: 300,
-      heartLifespanMs: 2500
+      heartLifespanMs: 2000
     },
     match: {
       pairs: [
@@ -50,7 +50,7 @@ const CONFIG = {
     },
     meter: {
       goalPercent: 100,
-      fillPerClick: 30,
+      fillPerClick: 3,
       decayPerSecond: 15,
       decayDelayMs: 6
     }
