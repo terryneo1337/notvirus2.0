@@ -6,7 +6,12 @@ const CONFIG = {
   questionSubtitle: "There are cute challenges waiting after this.",
   yesTitle: "Yay!",
   yesMessage: "You just unlocked a few tiny games. Beat them all to reveal your gift.",
-  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "I'll make cookies?"],
+  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "I'll make carbonara?"],
+  winMessages: {
+    hearts: "You did it! Hearts collected.",
+    match: "Perfect matches! So cute.",
+    meter: "Love level maxed!"
+  },
   theme: {
     background: "#fff0f6",
     surface: "#ffffff",
@@ -23,7 +28,11 @@ const CONFIG = {
     toEmail: "you@example.com"
   },
   games: {
-    hearts: { goal: 5 },
+    hearts: {
+      goal: 1,
+      spawnIntervalMs: 300,
+      heartLifespanMs: 2500
+    },
     match: {
       pairs: [
         { photo: "assets/pair-1.jpg", city: "Paris", caption: "Our first trip" },
@@ -33,7 +42,7 @@ const CONFIG = {
     },
     meter: {
       goalPercent: 100,
-      fillPerClick: 3,
+      fillPerClick: 30,
       decayPerSecond: 15,
       decayDelayMs: 6
     }
@@ -41,7 +50,8 @@ const CONFIG = {
   final: {
     title: "You did it!",
     message: "Your gift is waiting for you.",
-    subtext: "Meet me in the living room at 7.",
+    image: "assets/gift.jpg",
+    subtext: "You won a romantic restaurant dinner with me! And we gonna eat Wagyu beef ;) Can't wait to celebrate together.",
     emojis: "💌✨💖"
   }
 };

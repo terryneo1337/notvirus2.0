@@ -23,6 +23,7 @@ Open `config.js` and edit:
 - `yesMessage`
 - `noMessages`
 - `games.match.pairs` (your photos + cities)
+- `games.hearts.spawnIntervalMs` and `games.hearts.heartLifespanMs`
 - `final.title`, `final.message`, `final.subtext`, `final.emojis`
 
 You do **not** need to change `index.html` or `script.js`.

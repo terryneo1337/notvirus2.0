@@ -20,6 +20,7 @@
     </div>
 
     <main class="page">
+      <div id="celebration" class="celebration" aria-hidden="true"></div>
       <header class="hero">
         <div class="hero__card">
           <div class="hero__photo">
@@ -98,6 +99,7 @@
               <h3>Heart Catch</h3>
               <span id="hearts-score" class="game-panel__score">0 / 5</span>
             </div>
+            <div class="game-win" data-win="hearts">You did it! Hearts collected.</div>
             <p class="game-panel__text">Tap hearts to reach the goal.</p>
             <div id="hearts-field" class="hearts-field" aria-hidden="true"></div>
             <button class="btn btn--ghost game-close" type="button" data-close="hearts">
@@ -110,6 +112,7 @@
               <h3>Photo City Match</h3>
               <span id="match-score" class="game-panel__score">0 / 3</span>
             </div>
+            <div class="game-win" data-win="match">Perfect matches! So cute.</div>
             <p class="game-panel__text">Pick a photo, then the matching city.</p>
             <div class="match-grid">
               <div id="match-photos" class="match-column"></div>
@@ -125,6 +128,7 @@
               <h3>Love Meter</h3>
               <span id="meter-score" class="game-panel__score">0%</span>
             </div>
+            <div class="game-win" data-win="meter">Love level maxed!</div>
             <p class="game-panel__text">Click rapidly to fill the meter.</p>
             <div class="meter">
               <div id="meter-fill" class="meter__fill"></div>
@@ -141,11 +145,22 @@
         <div id="final-stage" class="final hidden">
           <h2 id="final-title">You did it!</h2>
           <p id="final-message">Your gift is waiting for you.</p>
+          <div class="final__photo">
+            <img id="final-image" src="" alt="Final gift" />
+          </div>
           <p id="final-subtext" class="final__subtext"></p>
           <div id="final-emojis" class="final__sparkles">* * *</div>
         </div>
       </section>
     </main>
+
+    <div id="photo-modal" class="photo-modal" aria-hidden="true">
+      <div class="photo-modal__card" role="dialog" aria-modal="true" aria-label="Photo preview">
+        <button id="photo-modal-close" class="photo-modal__close" type="button">Close</button>
+        <img id="photo-modal-image" src="" alt="Photo preview" />
+        <p id="photo-modal-caption" class="photo-modal__caption"></p>
+      </div>
+    </div>
 
     <script src="config.js"></script>
     <script

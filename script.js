@@ -32,6 +32,7 @@ const elements = {
   finalStage: $("#final-stage"),
   finalTitle: $("#final-title"),
   finalMessage: $("#final-message"),
+  finalImage: $("#final-image"),
   finalSubtext: $("#final-subtext"),
   finalEmojis: $("#final-emojis"),
   heartsField: $("#hearts-field"),
@@ -41,7 +42,13 @@ const elements = {
   matchScore: $("#match-score"),
   meterFill: $("#meter-fill"),
   meterScore: $("#meter-score"),
-  meterBtn: $("#meter-btn")
+  meterBtn: $("#meter-btn"),
+  celebration: $("#celebration"),
+  winBanners: document.querySelectorAll(".game-win"),
+  photoModal: $("#photo-modal"),
+  photoModalImage: $("#photo-modal-image"),
+  photoModalCaption: $("#photo-modal-caption"),
+  photoModalClose: $("#photo-modal-close")
 };
 
 const gamePanels = {
@@ -75,6 +82,7 @@ const applyConfig = () => {
   elements.yesMessage.textContent = CONFIG.yesMessage;
   elements.finalTitle.textContent = CONFIG.final.title;
   elements.finalMessage.textContent = CONFIG.final.message;
+  elements.finalImage.src = CONFIG.final.image || "";
   elements.finalSubtext.textContent = CONFIG.final.subtext || "";
   elements.finalEmojis.textContent = CONFIG.final.emojis;
 };
@@ -123,6 +131,7 @@ const openGame = (gameId) => {
   const panel = gamePanels[gameId];
   if (panel) {
     panel.classList.add("active");
+    smoothScrollTo(panel);
   }
   if (gameId === "hearts") initHeartsGame();
   if (gameId === "match") initMatchGame();
@@ -131,6 +140,7 @@ const openGame = (gameId) => {
 
 const closeAllGames = () => {
   Object.values(gamePanels).forEach((panel) => panel.classList.remove("active"));
+  elements.winBanners.forEach((banner) => banner.classList.remove("active"));
   state.activeGame = null;
   clearInterval(state.heartsInterval);
   clearInterval(state.meterInterval);
@@ -144,13 +154,19 @@ const markGameComplete = (gameId) => {
   if (card) {
     card.classList.add("game-card--done");
   }
+  showWinBanner(gameId);
+  if (gameId === "hearts") stopHeartsGame();
+  launchCelebration();
   checkAllComplete();
 };
 
 const checkAllComplete = () => {
   const total = Object.keys(gamePanels).length;
   if (state.completed.size === total) {
+    closeAllGames();
+    stages.games.classList.add("games-complete");
     elements.finalStage.classList.remove("hidden");
+    smoothScrollTo(elements.finalStage);
   }
 };
 
@@ -161,7 +177,13 @@ const initHeartsGame = () => {
   elements.heartsField.innerHTML = "";
   updateHeartsScore();
   clearInterval(state.heartsInterval);
-  state.heartsInterval = setInterval(spawnHeart, 700);
+  state.heartsInterval = setInterval(spawnHeart, CONFIG.games.hearts.spawnIntervalMs);
+};
+
+const stopHeartsGame = () => {
+  clearInterval(state.heartsInterval);
+  state.heartsInterval = null;
+  elements.heartsField.innerHTML = "";
 };
 
 const updateHeartsScore = () => {
@@ -174,19 +196,20 @@ const spawnHeart = () => {
   heart.textContent = "❤";
   heart.style.left = `${Math.random() * 80 + 10}%`;
   heart.style.bottom = "-20px";
+  heart.style.animationDuration = `${CONFIG.games.hearts.heartLifespanMs}ms`;
 
   heart.addEventListener("click", () => {
     heart.remove();
     heartsScore += 1;
     updateHeartsScore();
     if (heartsScore >= CONFIG.games.hearts.goal) {
-      clearInterval(state.heartsInterval);
+      stopHeartsGame();
       markGameComplete("hearts");
     }
   });
 
   elements.heartsField.appendChild(heart);
-  setTimeout(() => heart.remove(), 3600);
+  setTimeout(() => heart.remove(), CONFIG.games.hearts.heartLifespanMs);
 };
 
 let matchSelectedPhoto = null;
@@ -217,7 +240,18 @@ const initMatchGame = () => {
     const card = document.createElement("button");
     card.className = "match-card";
     card.dataset.city = pair.city;
-    card.innerHTML = `<img src="${pair.photo}" alt="${pair.city}" />\n<span>${pair.caption || ""}</span>`;
+    card.innerHTML = `
+      <button class="match-card__preview" type="button" aria-label="View full photo">
+        <img src="${pair.photo}" alt="${pair.city}" />
+        <span>View</span>
+      </button>
+      <span>${pair.caption || ""}</span>
+    `;
+    const preview = card.querySelector(".match-card__preview");
+    preview.addEventListener("click", (event) => {
+      event.stopPropagation();
+      openPhotoModal(pair.photo, pair.caption || pair.city);
+    });
     card.addEventListener("click", () => selectMatchCard(card, "photo"));
     elements.matchPhotos.appendChild(card);
   });
@@ -281,6 +315,18 @@ const updateMatchScore = () => {
   elements.matchScore.textContent = `${matchScore} / ${CONFIG.games.match.pairs.length}`;
 };
 
+const openPhotoModal = (src, caption) => {
+  elements.photoModalImage.src = src;
+  elements.photoModalCaption.textContent = caption || "";
+  elements.photoModal.classList.add("active");
+  elements.photoModal.setAttribute("aria-hidden", "false");
+};
+
+const closePhotoModal = () => {
+  elements.photoModal.classList.remove("active");
+  elements.photoModal.setAttribute("aria-hidden", "true");
+};
+
 const initMeterGame = () => {
   state.meterValue = 0;
   state.meterLastClick = Date.now();
@@ -319,13 +365,60 @@ const handleMeterClick = () => {
   }
 };
 
+const showWinBanner = (gameId) => {
+  const banner = document.querySelector(`.game-win[data-win="${gameId}"]`);
+  if (!banner) return;
+  banner.textContent =
+    CONFIG.winMessages?.[gameId] ||
+    banner.textContent ||
+    "You win!";
+  banner.classList.add("active");
+};
+
+const launchCelebration = () => {
+  const container = elements.celebration;
+  if (!container) return;
+  container.innerHTML = "";
+
+  const burstCount = 64;
+  const createBurst = (delay) => {
+    for (let i = 0; i < burstCount; i += 1) {
+      const piece = document.createElement("span");
+      const isHeart = i % 5 === 0;
+      piece.className = `confetti${isHeart ? " heart" : ""}`;
+      piece.style.left = `${Math.random() * 90 + 5}%`;
+      piece.style.animationDelay = `${delay + Math.random() * 0.4}s`;
+      piece.style.animationDuration = `${2.4 + Math.random() * 1.2}s`;
+      piece.style.transform = `scale(${0.7 + Math.random() * 0.6})`;
+      piece.style.background = isHeart ? "#ff7bb7" : `hsl(${320 + Math.random() * 60}, 85%, 70%)`;
+      if (isHeart) piece.textContent = "❤";
+      container.appendChild(piece);
+    }
+  };
+
+  createBurst(0);
+  createBurst(0.4);
+
+  setTimeout(() => {
+    container.innerHTML = "";
+  }, 3200);
+};
+
+const smoothScrollTo = (element) => {
+  if (!element) return;
+  element.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
 const wireEvents = () => {
   elements.noBtn.addEventListener("click", rotateNoMessage);
   elements.yesBtn.addEventListener("click", async () => {
     showStage("yes");
     await sendEmailNotification();
   });
-  elements.startGamesBtn.addEventListener("click", () => showStage("games"));
+  elements.startGamesBtn.addEventListener("click", () => {
+    showStage("games");
+    smoothScrollTo(stages.games);
+  });
 
   gameStartButtons.forEach((btn) => {
     btn.addEventListener("click", () => openGame(btn.dataset.game));
@@ -336,6 +429,13 @@ const wireEvents = () => {
   });
 
   elements.meterBtn.addEventListener("click", handleMeterClick);
+  elements.photoModalClose.addEventListener("click", closePhotoModal);
+  elements.photoModal.addEventListener("click", (event) => {
+    if (event.target === elements.photoModal) closePhotoModal();
+  });
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closePhotoModal();
+  });
 };
 
 applyConfig();
