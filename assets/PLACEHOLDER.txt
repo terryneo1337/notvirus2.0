@@ -1,0 +1,5 @@
+Add your images here:
+- assets/photo.jpg (main)
+- assets/pair-1.jpg (match game)
+- assets/pair-2.jpg (match game)
+- assets/pair-3.jpg (match game)

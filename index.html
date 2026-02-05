@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true">
+      <span class="ambient__blob ambient__blob--one"></span>
+      <span class="ambient__blob ambient__blob--two"></span>
+      <span class="ambient__blob ambient__blob--three"></span>
+    </div>
+
+    <main class="page">
+      <header class="hero">
+        <div class="hero__card">
+          <div class="hero__photo">
+            <img id="valentine-photo" src="" alt="Your valentine" />
+          </div>
+          <div class="hero__text">
+            <p class="eyebrow">For</p>
+            <h1 id="valentine-name">Valentine</h1>
+            <p id="hero-message" class="hero__message">
+              A tiny adventure, wrapped in a lot of love.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <section id="question-stage" class="stage stage--active">
+        <h2 id="question-text" class="stage__title">Will you be my Valentine?</h2>
+        <p id="question-subtitle" class="stage__subtitle">
+          There are cute challenges waiting after this.
+        </p>
+        <div class="stage__actions">
+          <button id="yes-btn" class="btn btn--primary" type="button">Yes</button>
+          <button id="no-btn" class="btn btn--ghost" type="button">No</button>
+        </div>
+        <p id="no-message" class="stage__hint"></p>
+      </section>
+
+      <section id="yes-stage" class="stage">
+        <h2 id="yes-title" class="stage__title">Yay!</h2>
+        <p id="yes-message" class="stage__subtitle">
+          You just unlocked a few tiny games. Beat them all to reveal your gift.
+        </p>
+        <div class="stage__actions">
+          <button id="start-games-btn" class="btn btn--primary" type="button">
+            Start the cute challenges
+          </button>
+        </div>
+        <p id="email-status" class="stage__hint"></p>
+      </section>
+
+      <section id="games-stage" class="stage">
+        <div class="games-header">
+          <h2 class="stage__title">Cute Challenges</h2>
+          <p class="stage__subtitle" id="games-subtitle">
+            Finish all of them to unlock the gift.
+          </p>
+        </div>
+
+        <div class="games-grid">
+          <article class="game-card" data-game="hearts">
+            <h3 class="game-card__title">Heart Catch</h3>
+            <p class="game-card__text">Tap the floating hearts before they drift away.</p>
+            <button class="btn btn--secondary game-start" type="button" data-game="hearts">
+              Play
+            </button>
+          </article>
+          <article class="game-card" data-game="match">
+            <h3 class="game-card__title">Photo City Match</h3>
+            <p class="game-card__text">Match each photo to the city where it was taken.</p>
+            <button class="btn btn--secondary game-start" type="button" data-game="match">
+              Play
+            </button>
+          </article>
+          <article class="game-card" data-game="meter">
+            <h3 class="game-card__title">Love Meter</h3>
+            <p class="game-card__text">Click quickly to fill the meter with love energy.</p>
+            <button class="btn btn--secondary game-start" type="button" data-game="meter">
+              Play
+            </button>
+          </article>
+        </div>
+
+        <div class="game-panels">
+          <div id="game-hearts" class="game-panel" aria-live="polite">
+            <div class="game-panel__header">
+              <h3>Heart Catch</h3>
+              <span id="hearts-score" class="game-panel__score">0 / 5</span>
+            </div>
+            <p class="game-panel__text">Tap hearts to reach the goal.</p>
+            <div id="hearts-field" class="hearts-field" aria-hidden="true"></div>
+            <button class="btn btn--ghost game-close" type="button" data-close="hearts">
+              Back
+            </button>
+          </div>
+
+          <div id="game-match" class="game-panel" aria-live="polite">
+            <div class="game-panel__header">
+              <h3>Photo City Match</h3>
+              <span id="match-score" class="game-panel__score">0 / 3</span>
+            </div>
+            <p class="game-panel__text">Pick a photo, then the matching city.</p>
+            <div class="match-grid">
+              <div id="match-photos" class="match-column"></div>
+              <div id="match-cities" class="match-column"></div>
+            </div>
+            <button class="btn btn--ghost game-close" type="button" data-close="match">
+              Back
+            </button>
+          </div>
+
+          <div id="game-meter" class="game-panel" aria-live="polite">
+            <div class="game-panel__header">
+              <h3>Love Meter</h3>
+              <span id="meter-score" class="game-panel__score">0%</span>
+            </div>
+            <p class="game-panel__text">Click rapidly to fill the meter.</p>
+            <div class="meter">
+              <div id="meter-fill" class="meter__fill"></div>
+            </div>
+            <button id="meter-btn" class="btn btn--primary" type="button">
+              Click fast
+            </button>
+            <button class="btn btn--ghost game-close" type="button" data-close="meter">
+              Back
+            </button>
+          </div>
+        </div>
+
+        <div id="final-stage" class="final hidden">
+          <h2 id="final-title">You did it!</h2>
+          <p id="final-message">Your gift is waiting for you.</p>
+          <p id="final-subtext" class="final__subtext"></p>
+          <div id="final-emojis" class="final__sparkles">* * *</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="config.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+      type="text/javascript"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
