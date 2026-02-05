@@ -6,7 +6,7 @@ const CONFIG = {
   questionSubtitle: "There are cute challenges waiting after this.",
   yesTitle: "Yay!",
   yesMessage: "You just unlocked a few tiny games. Beat them all to reveal your gift.",
-  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "I'll make carbonara?"],
+  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "I'll make carbonara?",  "I'll make carbonara?",  "I'll make carbonara?"],
   winMessages: {
     hearts: "You did it! Hearts collected.",
     match: "Perfect matches! So cute.",
