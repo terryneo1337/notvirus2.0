@@ -43,7 +43,7 @@ const CONFIG = {
     },
     match: {
       pairs: [
-        { photo: "assets/pair-1.jpg", city: "", caption: "Exersai" },
+        { photo: "assets/pair-1.jpg", city: "1", caption: "Exersai" },
         { photo: "assets/pair-2.jpg", city: "1", caption: "Marry CHrysler" },
         { photo: "assets/pair-3.jpg", city: "1", caption: "Derp" }
       ]
