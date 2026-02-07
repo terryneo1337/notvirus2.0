@@ -1,12 +1,12 @@
-erconst CONFIG = {
-  valentineName: "Ashley",
+const CONFIG = {
+  valentineName: "Jade",
   photoPath: "assets/photo.jpg",
   heroMessage: "A tiny adventure wrapped in a lot of love.",
   questionText: "Will you be my Valentine?",
   questionSubtitle: "There are cute challenges waiting after this.",
   yesTitle: "Yay!",
   yesMessage: "You just unlocked a few tiny games. Beat them all to reveal your gift.",
-  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "Why Not?", "Noob", "Noobs", "NOOOOOOOBBS", "Press Yes"],
+  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "I'll make carbonara?"],
   winMessages: {
     hearts: "You did it! Hearts collected.",
     match: "Perfect matches! So cute.",
@@ -21,7 +21,7 @@ erconst CONFIG = {
     text: "#2a1220"
   },
   email: {
-    enabled: false,
+    enabled: true,
     serviceId: "YOUR_SERVICE_ID",
     templateId: "YOUR_TEMPLATE_ID",
     publicKey: "YOUR_PUBLIC_KEY",
@@ -43,8 +43,8 @@ erconst CONFIG = {
     },
     match: {
       pairs: [
-        { photo: "assets/pair-1.jpg", city: "1", caption: "Exersai" },
-        { photo: "assets/pair-2.jpg", city: "1", caption: "Marry Chrysler" },
+        { photo: "assets/pair-1.jpg", city: "", caption: "Exersai" },
+        { photo: "assets/pair-2.jpg", city: "1", caption: "Marry CHrysler" },
         { photo: "assets/pair-3.jpg", city: "1", caption: "Derp" }
       ]
     },
@@ -59,7 +59,7 @@ erconst CONFIG = {
     title: "You did it!",
     message: "Your gift is waiting for you.",
     image: "assets/gift.jpg",
-    subtext: "You won a dinner date with me! 8.30PM at 1 Hill Street",
+    subtext: "You won a dinner date with me at 8.30pm on the 14/2/2026.",
     emojis: "💌✨💖"
   }
 };
