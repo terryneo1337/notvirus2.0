@@ -1,12 +1,12 @@
 const CONFIG = {
-  valentineName: "Jade",
+  valentineName: "Ashley",
   photoPath: "assets/photo.jpg",
   heroMessage: "A tiny adventure wrapped in a lot of love.",
   questionText: "Will you be my Valentine?",
   questionSubtitle: "There are cute challenges waiting after this.",
   yesTitle: "Yay!",
   yesMessage: "You just unlocked a few tiny games. Beat them all to reveal your gift.",
-  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "I'll make carbonara?"],
+  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "Why not?", "Noob", "Press Yes", "Or it will never end"],
   winMessages: {
     hearts: "You did it! Hearts collected.",
     match: "Perfect matches! So cute.",
