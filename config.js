@@ -6,7 +6,7 @@ const CONFIG = {
   questionSubtitle: "There are cute challenges waiting after this.",
   yesTitle: "Yay!",
   yesMessage: "You just unlocked a few tiny games. Beat them all to reveal your gift.",
-  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "Why Not"],
+  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "Why Not, Noob, Noobs, NOOOOOOOBBS, Press Yes"],
   winMessages: {
     hearts: "You did it! Hearts collected.",
     match: "Perfect matches! So cute.",
@@ -21,7 +21,7 @@ const CONFIG = {
     text: "#2a1220"
   },
   email: {
-    enabled: true,
+    enabled: false,
     serviceId: "YOUR_SERVICE_ID",
     templateId: "YOUR_TEMPLATE_ID",
     publicKey: "YOUR_PUBLIC_KEY",
@@ -59,7 +59,7 @@ const CONFIG = {
     title: "You did it!",
     message: "Your gift is waiting for you.",
     image: "assets/gift.jpg",
-    subtext: "You won a romantic restaurant dinner with me! And we gonna eat Wagyu beef ;) Can't wait to celebrate together.",
+    subtext: "You won a dinner date with me! 8.30PM at 1 Hill Street",
     emojis: "💌✨💖"
   }
 };
