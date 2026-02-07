@@ -30,7 +30,7 @@ const CONFIG = {
   music: {
     enabled: true,
     autoplay: true,
-    musicUrl: "https://res.cloudinary.com/dncywqfpb/video/upload/v1738399057/music_qrhjvy.mp3",
+    musicUrl: "https://res.cloudinary.com/dztiqwydw/video/upload/v1770438541/Beach_House_-_Space_Song_Filtered_Instrumental_kc3lzu.mp3",
     startText: "🎵 Play Music",
     stopText: "🔇 Stop Music",
     volume: 0.6
