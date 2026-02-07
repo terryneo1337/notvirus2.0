@@ -1,4 +1,4 @@
-const CONFIG = {
+erconst CONFIG = {
   valentineName: "Ashley",
   photoPath: "assets/photo.jpg",
   heroMessage: "A tiny adventure wrapped in a lot of love.",
@@ -43,8 +43,8 @@ const CONFIG = {
     },
     match: {
       pairs: [
-        { photo: "assets/pair-1.jpg", city: "1", caption: "Marry Chysler" },
-        { photo: "assets/pair-2.jpg", city: "1", caption: "Exersai" },
+        { photo: "assets/pair-1.jpg", city: "1", caption: "Exersai" },
+        { photo: "assets/pair-2.jpg", city: "1", caption: "Marry Chrysler" },
         { photo: "assets/pair-3.jpg", city: "1", caption: "Derp" }
       ]
     },
