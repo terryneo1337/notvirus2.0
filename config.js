@@ -43,9 +43,9 @@ const CONFIG = {
     },
     match: {
       pairs: [
-        { photo: "assets/pair-1.jpg", city: "Paris", caption: "Our first trip" },
-        { photo: "assets/pair-2.jpg", city: "Kyoto", caption: "Cherry blossoms" },
-        { photo: "assets/pair-3.jpg", city: "Lisbon", caption: "Pastel de nata" }
+        { photo: "assets/pair-1.jpg", city: "1", caption: "Marry Chysler" },
+        { photo: "assets/pair-2.jpg", city: "1", caption: "Exersai" },
+        { photo: "assets/pair-3.jpg", city: "1", caption: "Derp" }
       ]
     },
     meter: {
