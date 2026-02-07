@@ -6,7 +6,7 @@ erconst CONFIG = {
   questionSubtitle: "There are cute challenges waiting after this.",
   yesTitle: "Yay!",
   yesMessage: "You just unlocked a few tiny games. Beat them all to reveal your gift.",
-  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "Why Not, Noob, Noobs, NOOOOOOOBBS, Press Yes"],
+  noMessages: ["Are you sure?", "Pretty please?", "Try again?", "Why Not?", "Noob", "Noobs", "NOOOOOOOBBS", "Press Yes"],
   winMessages: {
     hearts: "You did it! Hearts collected.",
     match: "Perfect matches! So cute.",
